@@ -9,15 +9,17 @@ nav:
 
 # Menu 目錄
 menu:
-  # Home: / || fas fa-home
-  # Archives: /archives/ || fas fa-archive
-  # Tags: /tags/ || fas fa-tags
-  # Categories: /categories/ || fas fa-folder-open
-  # List||fas fa-list:
-  #   Music: /music/ || fas fa-music
-  #   Movie: /movies/ || fas fa-video
-  # Link: /link/ || fas fa-link
-  # About: /about/ || fas fa-heart
+  首页: / || fas fa-home
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  清单||fa fa-heartbeat:
+    音乐: /music/ || fas fa-music
+    照片: /Gallery/ || fas fa-images
+    电影: /movies/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-heart
+
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -707,14 +709,23 @@ click_heart:
 
 # Mouse click effects: words (鼠標點擊效果: 文字)
 clickShowText:
-  enable: false
+  enable: true
   text:
-    # - I
-    # - LOVE
-    # - YOU
+    - 爱国
+    - 敬业
+    - 诚信
+    - 友善
+    - 和平
+    - 富强
+    - 民主
+    - 文明
+    - 自由
+    - 平等
+    - 公正
+    - 法治
   fontSize: 15px
-  random: false
-  mobile: false
+  random: true
+  mobile: true
 
 # Default display mode (網站默認的顯示模式)
 # light (default) / dark
@@ -911,6 +922,7 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
+    - <link rel="stylesheet" href="/css/nav/nav.css?v1">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
