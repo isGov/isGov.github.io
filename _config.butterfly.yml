@@ -927,6 +927,9 @@ inject:
     - <link rel="stylesheet" href="/css/background/background.css?v1">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
+   - <canvas id="universe"></canvas>
+   - <div id="universe-mask"></div>
+   - <script defer src="/js/universe.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN
