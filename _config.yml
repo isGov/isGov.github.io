@@ -100,8 +100,13 @@ theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
+# hexo clean 清理静态文件
+# hexo g 生成静态文件
+# hexo s 启动服务
+# hexo d 一键部署服务
+# hexo g只是生成你本地最新的打包好的文件，你最终hexo d才会部署到github
 deploy:
   type: git
-  repository: https://gitlab.com/gov_blog/isgov.gitlab.io.git
-  branch: master
+  repository: git@github.com:isGov/isGov.github.io.git
+  branch: main
 
