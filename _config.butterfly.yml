@@ -46,7 +46,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png
+  img: /img/ava.jpg
   effect: false
 
 # Disable all banner image
@@ -760,12 +760,17 @@ hr_icon:
 
 # the subtitle on homepage (主頁subtitle)
 subtitle:
-  enable: false
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Customize typed.js (配置typed.js)
   # https://github.com/mattboldt/typed.js/#customization
-  typed_option:
+  # Effect Speed Options (打字效果速度參數)
+  startDelay: 300 # time before typing starts in milliseconds
+  typeSpeed: 150 # type speed in milliseconds
+  backSpeed: 50 # backspacing speed in milliseconds
+  # loop (循環打字)
+  loop: false
   # source 調用第三方服務
   # source: false 關閉調用
   # source: 1  調用一言網的一句話（簡體） https://hitokoto.cn/
@@ -774,7 +779,8 @@ subtitle:
   # subtitle 會先顯示 source , 再顯示 sub 的內容
   source: false
   # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
-  sub:
+  sub: 
+   - 巧思妙算引创意 指点妙法改视界
 
 # Loading Animation (加載動畫)
 preloader:
