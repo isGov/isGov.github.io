@@ -10,12 +10,20 @@ nav:
 # Menu 目錄
 menu:
   首页: / || fas fa-home
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder-open
-  清单||fa fa-heartbeat:
-    音乐: /music/ || fas fa-music
-    照片: /Gallery/ || fas fa-images
-    电影: /movies/ || fas fa-video
+  文章||fas fa-book:
+      归档: /archives/ || fas fa-archive
+      标签: /tags/ || fas fa-tags
+      分类: /categories/ || fas fa-folder-open
+  娱乐||fas fa-solid fa-bars-progress:
+    图片: /gallery/ || fas fa-photo-film
+    书单: /books/ || fas fa-solid fa-book
+    电影: /movies/ || fas fa-duotone fa-film
+    音乐: /songs/ || fas fa-solid fa-music
+  前端||fas fa-solid fa-code:
+     vue: /vue/ || fas fa-brands fa-vuejs
+     react: /react/ || fas fa-brands fa-react
+     node: /node/ || fas fa-brands fa-node-js
+     webpack: /webpack/ || fas fa-brands fa-webpack
   友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
@@ -88,7 +96,8 @@ cover:
   position: both
   # When cover is not set, the default cover is displayed (當沒有設置cover時，默認的封面顯示)
   default_cover:
-    # - https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+    - /img/xc.jpg
+    - https://file.crazywong.com/gh/jerryc127/CDN@latest/cover/default_bg2.png
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
@@ -97,8 +106,8 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
-  subtitle: 'Page Not Found'
+  enable: true
+  subtitle: '页面没有找到'
   background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
 
 post_meta: #页面meta显示
