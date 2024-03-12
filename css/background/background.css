@@ -64,3 +64,7 @@
 [data-theme="dark"] #page-header::before {
   background: transparent !important;
 }
+/* 文章内部title字体居中 */
+#page-header #post-info{
+  text-align: center !important;
+}
