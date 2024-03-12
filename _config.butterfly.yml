@@ -290,8 +290,8 @@ busuanzi:
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
-  enable: false
-  publish_date:
+  enable: true
+  publish_date: 3/12/2023 00:00:00  
 
 # Aside widget - Newest Comments
 newest_comments:
@@ -934,6 +934,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/nav/nav.css?v1">
     - <link rel="stylesheet" href="/css/background/background.css?v1">
+    - <link rel="stylesheet" href="/css/common.css?v1">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
    - <canvas id="universe"></canvas>

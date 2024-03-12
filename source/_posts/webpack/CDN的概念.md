@@ -1,8 +1,7 @@
 ---
-layout: '[layout]'
 title: CDN的概念
 date: 2024-03-12 15:01:57
-type: tags
+webpack: CDN的概念
 tags: 
  - 性能优化
 categories:
@@ -16,6 +15,7 @@ copyright_author: gov
 swiper_index: 1
 top_group_index: 1
 top_single_background: /img/xc.jpg
+abbrlink: CDN的概念
 ---
 
 > CDN(Content Delivery Network，内容分发网络)是指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户
