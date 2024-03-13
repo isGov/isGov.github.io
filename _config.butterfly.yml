@@ -14,7 +14,7 @@ menu:
       归档: /archives/ || fas fa-archive
       标签: /tags/ || fas fa-tags
       分类: /categories/ || fas fa-folder-open
-  娱乐||fas fa-solid fa-bars-progress:
+  兴趣||fas fa-solid fa-bars-progress:
     图片: /gallery/ || fas fa-photo-film
     书单: /books/ || fas fa-solid fa-book
     电影: /movies/ || fas fa-duotone fa-film
@@ -23,8 +23,8 @@ menu:
      vue: /vue/ || fas fa-brands fa-vuejs
      react: /react/ || fas fa-brands fa-react
      node: /node/ || fas fa-brands fa-node-js
-     webpack: /webpack/ || fas fa-brands fa-webpack
-  友链: /link/ || fas fa-link
+     webpack: /webpack/ || fas fa-brands fa-react
+  # 友链: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 
 
@@ -264,7 +264,7 @@ aside:
     order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
     sort_order: # Don't modify the setting unless you know how it works
   card_archives: # 文章归档
-    enable: true
+    enable: false
     type: monthly # yearly or monthly
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
@@ -307,7 +307,7 @@ newest_comments:
 
 # Conversion between Traditional and Simplified Chinese (簡繁轉換)
 translate:
-  enable: false
+  enable: true
   # The text of a button
   default: 繁
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
@@ -326,7 +326,7 @@ readmode: true
 darkmode:
   enable: true
   # Toggle Button to switch dark/light mode
-  button: true
+  button: false
   # Switch dark/light mode automatically (自動切換 dark mode和 light mode)
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
@@ -337,7 +337,7 @@ darkmode:
   end: # 22
 
 # show scroll percent in scroll-to-top button
-rightside_scroll_percent: false
+rightside_scroll_percent: true
 
 # Don't modify the following settings unless you know how they work (非必要請不要修改 )
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
