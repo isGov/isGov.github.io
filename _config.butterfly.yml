@@ -41,8 +41,9 @@ code_word_wrap: false
 # Social Settings (社交圖標設置)
 # formal:
 #   icon: link || the description || color
-social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
+social: #个人卡片下图标
+  blog blog-jiejun: https://juejin.cn/user/3259413814056782/posts
+  fab fa-github: https://isgov.github.io/ || Github || '#4a7dbe'
   # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
 
 # Image (圖片設置)
@@ -238,10 +239,10 @@ aside:
     enable: true
     description:
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://isgov.github.io/
   card_announcement: # 公告信息
     enable: true
     content: 感谢各位的访问，本博客主要分享前端可视化技术，如在访问过程中遇到问题，请及时评论或留言，看到了会在第一时间给出回复
@@ -799,7 +800,7 @@ preloader:
 # wordcount (字數統計)
 # see https://butterfly.js.org/posts/ceeb73f/#字數統計
 wordcount:
-  enable: false
+  enable: true
   post_wordcount: true
   min2read: true
   total_wordcount: true
@@ -932,6 +933,7 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
+    - <link rel="stylesheet" href="/css/iconfont.css?v1">
     - <link rel="stylesheet" href="/css/nav/nav.css?v1">
     - <link rel="stylesheet" href="/css/background/background.css?v1">
     - <link rel="stylesheet" href="/css/common.css?v1">
