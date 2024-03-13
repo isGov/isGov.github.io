@@ -941,7 +941,7 @@ inject:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
    - <script defer src="/js/jquery.min.js"></script>
-   - <script  src="/js/rightmenu.js"></script>
+   - <script  defer src="/js/rightmenu.js"></script>
    - <canvas id="universe"></canvas>
    - <div id="universe-mask"></div>
    - <script defer src="/js/universe.js"></script>
