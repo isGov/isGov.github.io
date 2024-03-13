@@ -15,7 +15,7 @@ menu:
       标签: /tags/ || fas fa-tags
       分类: /categories/ || fas fa-folder-open
   兴趣||fas fa-solid fa-bars-progress:
-    图片: /gallery/ || fas fa-photo-film
+    图库: /gallery/ || fas fa-photo-film
     书单: /books/ || fas fa-solid fa-book
     电影: /movies/ || fas fa-duotone fa-film
     音乐: /songs/ || fas fa-solid fa-music
@@ -284,9 +284,9 @@ aside:
 # busuanzi count for PV / UV in site
 # 訪問人數
 busuanzi:
-  site_uv: true
-  site_pv: true
-  page_pv: true
+  site_uv: false
+  site_pv: false
+  page_pv: false
 
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
@@ -863,14 +863,14 @@ note:
 # It may contain bugs and unstable, give feedback when you find the bugs.
 # https://github.com/MoOx/pjax
 pjax:
-  enable: false
+  enable: true
   exclude:
     # - xxxx
     # - xxxx
 
 # Inject the css and script (aplayer/meting)
 aplayerInject:
-  enable: false
+  enable: true
   per_page: true
 
 # Snackbar (Toast Notification 彈窗)
@@ -945,6 +945,7 @@ inject:
    - <canvas id="universe"></canvas>
    - <div id="universe-mask"></div>
    - <script defer src="/js/universe.js"></script>
+   - <div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div>
     # - <script src="xxxx"></script>
 
 # CDN
