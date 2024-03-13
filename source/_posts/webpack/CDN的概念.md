@@ -2,19 +2,17 @@
 title: CDN的概念
 date: 2024-03-12 15:01:57
 webpack: CDN的概念
-tags: 
- - 性能优化
-categories:
- - webpack 
+tags: 性能优化
+categories: webpack
 keywords: 
  - CDN 
-top_img: /img/xc.jpg
+cover: /img/90.jpg
 comments: true
 toc_number: 1
 copyright_author: gov
 swiper_index: 1
 top_group_index: 1
-top_single_background: /img/xc.jpg
+top_single_background: /img/90.jpg
 abbrlink: CDN的概念
 ---
 
