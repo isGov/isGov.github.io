@@ -937,7 +937,7 @@ inject:
     - <link rel="stylesheet" href="/css/nav/nav.css?v1">
     - <link rel="stylesheet" href="/css/background/background.css?v1">
     - <link rel="stylesheet" href="/css/common.css?v1">
-    - <link rel="stylesheet" type="text/css" href="/css/rightMenu.css">
+    - <link rel="stylesheet" type="text/css" href="/css/rightMenu.css?v1">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
    - <script defer  src="/js/jquery.min.js"></script>
