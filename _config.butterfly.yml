@@ -937,15 +937,15 @@ inject:
     - <link rel="stylesheet" href="/css/nav/nav.css?v1">
     - <link rel="stylesheet" href="/css/background/background.css?v1">
     - <link rel="stylesheet" href="/css/common.css?v1">
-    - <link rel="stylesheet" href="/css/rightmenu.css">
+    - <link rel="stylesheet" type="text/css" href="/css/rightMenu.css">
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
    - <script defer  src="/js/jquery.min.js"></script>
-   - <script defer  src="/js/rightmenu.js"></script>
+   - <script defer  data-pjax src="/js/rightMenu.js"></script>
    - <canvas id="universe"></canvas>
    - <div id="universe-mask"></div>
    - <script defer  src="/js/universe.js"></script>
-   - <div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div>
+  #  - <div class="aplayer no-destroy" data-id="7422861869" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="true" data-lrcType="-1"> </div>
     # - <script src="xxxx"></script>
 
 # CDN
