@@ -6,7 +6,7 @@
   <link href="https://isgov.github.io/atom.xml" rel="self"/>
   
   <link href="https://isgov.github.io/"/>
-  <updated>2024-03-13T06:23:47.080Z</updated>
+  <updated>2024-03-14T08:34:14.882Z</updated>
   <id>https://isgov.github.io/</id>
   
   <author>
@@ -17,48 +17,422 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>图片优化</title>
-    <link href="https://isgov.github.io/posts/%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/"/>
-    <id>https://isgov.github.io/posts/%E5%9B%BE%E7%89%87%E4%BC%98%E5%8C%96/</id>
-    <published>2024-03-12T07:02:57.000Z</published>
-    <updated>2024-03-13T06:23:47.080Z</updated>
+    <title>Redux常用方法</title>
+    <link href="https://isgov.github.io/posts/Redux%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/"/>
+    <id>https://isgov.github.io/posts/Redux%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</id>
+    <published>2024-03-12T07:31:57.000Z</published>
+    <updated>2024-03-14T08:34:14.882Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="1-如何对项目中的图片进行优化"><a href="#1-如何对项目中的图片进行优化" class="headerlink" title="1.如何对项目中的图片进行优化"></a>1.如何对项目中的图片进行优化</h1><blockquote><ol><li>不用图片，很多时候会使用到很多修饰类图片，其实这类修饰图片完全可以用 CSS 去代替</li><li>2.对于移动端来说，屏幕宽度就那么点，完全没有必要去加载原图浪费带宽。一般图片都用 CDN 加载，可以计算出适配屏幕的宽度，然后去请求相应裁剪好的图片</li><li>小图使用 base64 格式</li><li>将多个图标文件整合到一张图片中 (雪碧图)</li><li>选择止确的图片格式：<ul><li>对于能够显示 WebP 格式的浏览器尽量使用 Webp 格式。因为 Webp 格式具有更好的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量，缺点就是兼容性并不好。</li><li>小图使用 PNG，其实对于大部分图标这类图片，完全可以使用 SVG 代替</li><li>照片使用 JPEG</li></ul></li></ol></blockquote><h1 id="2-常见的图片格式及使用场景"><a href="#2-常见的图片格式及使用场景" class="headerlink" title="2.常见的图片格式及使用场景"></a>2.常见的图片格式及使用场景</h1><blockquote><p>(1) <strong>BMP</strong>，是无损的、既支持索引色也支持直接色的点阵图。这种图片格式几乎没有对数据进行压缩，所以BMP格式的图片通常是较大的文件</p><p>(2)<strong>GIF</strong>是无损的、采用索引色的点阵图。采用LZW压缩算法进行编码。文件小，是GIF格式的优点，同时，GIF格式还具有支持动画以及透明的优点。但是GIF格式仅支持8bit的索引色，所以GIF格式适用于对色彩要求不高同时需要文件体积较小的场景</p><p>(3) <strong>JPEG</strong>是有损的、采用直接色的点阵图。JPEG的图片的优点是采用了直接色，得益于更主富的色彩，JPEG非常适合用来存储照片与GIF相比，JPEG不适合用来存储企业Logo、线框类的图。因为有损压缩会导致图片模糊，而直接色的选用，又会导致图片文件较GIF更大</p><p>(4)<strong>PNG-8</strong>是无损的、使用索引色的点阵图。PNG是一种比较新的图片格式，PNG-8是非常好的GIF格式替代者，在可能的情况下，应该尽可能的使用PNG-8而不是GIF，因为在相同的图片效果下，PNG-8具有更小的文件体积。除此之外，PNG-8还支持透明度的调节，而GIF并不支持。除非需要动画的支持，否则没有理由使用GIF而不是PNG-8</p><p>(5) <strong>PNG-24</strong>是无损的、使用直接色的点阵图。PNG-24的优点在于它压缩了图片的数据，使得同样效果的图片，PNG-24格式的文件大小要比BMP小得多。当然，PNG24的图片还是要比JPEG、GIF、PNG-8大得多</p><p>(6)<strong>SVG</strong>是无损的矢量图。SVG是矢量图意味着SVG图片由直线和曲线以及绘制它们的方法组成。当放大SVG图片时，看到的还是线和曲线，而不会出现像素点。这意味着SVG图片在放大时，不会失真，所以它非常适合用来绘制Logo、lcon等</p><p>(7)<strong>WebP</strong>是谷歌开发的一种新图片格式，WebP是同时支持有损和无损压缩的、使用直接色的点阵图。从名字就可以看出来它是为Web而生的，什么叫为Web而生呢? 就是说相同质量的图片，WebP具有更小的文件体积。现在网站上充满了大量的图片，如果能够降低每一个图片的文件大小，那么将大大减少测览器和服务器之间的数据传输量，进而降低访问延迟，提升访问体验。目前只有Chrome浏览器和Opera浏览器支持WebP格式，兼容性不太好</p><ul><li><strong>在无损压缩的情况下</strong>，相同质量的WebP图片，文件大小要比PNG小26%</li><li><strong>在有损压缩的情况下</strong>，具有相同图片精度的WebP图片，文件大小要比<strong>JPEG</strong>小25%~34%:</li><li><strong>WebP图片格式支持图片透明度</strong>，一个无损压缩的WebP图片，如果要支持透明度只需要22%的格外文件大小</li></ul></blockquote>]]></content>
-    
-    
-    <summary type="html">本文将介绍在开发中如何对图片进行优化？有多少种优化方式</summary>
+    <content type="html"><![CDATA[<h1 id="Redux常用方法"><a href="#Redux常用方法" class="headerlink" title="Redux常用方法"></a>Redux常用方法</h1><h2 id="Redux-Store"><a href="#Redux-Store" class="headerlink" title="Redux Store"></a>Redux Store</h2><blockquote><p>所有 Redux 应用的中心都是 store。 “store” 是保存应用程序的全局state 的容器</p><p>store 是一个JavaScript 对象。具有一些特殊的功能和能力。使其与普通的全局对象不同：</p><ul><li>切勿直接修改(modify) 或 更改(change) 保存在Redux 存储中的状态</li><li>相反，导致状态更新的唯一方法是创建一个描述 “应用程序中发生的某些事情”的普通action对象，然后将该action dispatch 到 store 以告诉它发生了什么</li><li>当一个action 被dispatch 后，store 会调用根 reducer 方法，让其根据action 和旧 state 计算出 state</li><li>最后，store 会通知 <strong>订阅者(subscribers)</strong> 状态已更新，以便可以使用新数据更新UI</li></ul></blockquote><h2 id="Redux-数据流"><a href="#Redux-数据流" class="headerlink" title="Redux 数据流"></a>Redux 数据流</h2><blockquote><ul><li>actions 会在用户交互时被dispacth(action就是对行为的描述，例如我要干嘛，洗车)</li><li>store 通过执行reducer 方法计算出一个新的state(此时reducer就会去洗车(执行))</li><li>UI 读取最新的 state 来展示最新的值</li></ul></blockquote>]]></content>
     
     
+    <summary type="html">Redux常用方法有哪些？</summary>
     
-    <category term="性能优化" scheme="https://isgov.github.io/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     
     
-    <category term="性能优化" scheme="https://isgov.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
     
   </entry>
   
   <entry>
-    <title>CDN的概念</title>
-    <link href="https://isgov.github.io/posts/CDN%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
-    <id>https://isgov.github.io/posts/CDN%E7%9A%84%E6%A6%82%E5%BF%B5/</id>
-    <published>2024-03-12T07:01:57.000Z</published>
-    <updated>2024-03-13T06:28:04.918Z</updated>
+    <title>redux</title>
+    <link href="https://isgov.github.io/posts/redux/"/>
+    <id>https://isgov.github.io/posts/redux/</id>
+    <published>2024-03-12T07:30:57.000Z</published>
+    <updated>2024-03-14T08:33:55.254Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>CDN(Content Delivery Network，内容分发网络)是指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户</p></blockquote><blockquote><p>典型的CDN系统由下面三个部分组成:</p><ul><li>分发服务系统:最基本的工作单元就是Cache设备，cache (边缘cache) 负责直接响应最终用户的访问请求，把缓存在本地的内容快速地提供给用户。同时cache还负责与源站点进行内容同步，把更新的内容以及本地没有的内容从源站点获取并保存在本地。Cache设备的数量、规模、总服务能力是衡量一个CDN系统服务能力的最基本的指标</li><li>负载均衡系统:主要功能是负责对所有发起服务请求的用户进行访问调度，确定提供给用户的最终实际访问地址。两级调度体系分为全局负载均衡(GSLB) 和本地负载均衡(SLB) 。全局负载均衡主要根据用户就近性原则，通过对每个服务节点进行“最优”判断，确定向用户提供服务的cache的物理位置，本地负载均衡主要负责节点内部的设备负载均衡</li><li>运营管理系统:运营管理系统分为运营管理和网络管理子系统，负责处理业务层面的与外界系统交互所必须的收集、整理、交付工作，包含客户管理、产品管理、计费管理、统计分析等功能</li></ul></blockquote><h1 id="2-CDN的作用"><a href="#2-CDN的作用" class="headerlink" title="2.CDN的作用"></a>2.CDN的作用</h1><blockquote><p>CDN一般会用来托管Web资源 (包括文本、图片和脚本等)可供下载的资源媒体文件、软件、文档等) ，应用程序 (门户网站等) 。使用CDN来加速这些资源的访问</p><p>(1) 在性能方面，引入CDN的作用在于!</p><ul><li><p>用户收到的内容来自最近的数据中心，延迟更低，内容加载更快</p></li><li><p>部分资源请求分配给了CDN，减少了服务器的负载</p></li></ul><p>(2) 在安全方面，CDN有助于防御DDoS、MITM等网络攻击:</p><ul><li>针对DDos: 通过监控分析异常流量，限制其请求频率</li><li>·针对MITM: 从源服务器到 CDN 节点到SP (lnternet Service Provider) ，全链路 HTTPS 通信</li></ul><p>除此之外，CDN作为一种基础的云服务，同样具有资源托管、按需扩展(能够应对流量高峰)等方面的优势</p></blockquote><h1 id="3-CDN的原理"><a href="#3-CDN的原理" class="headerlink" title="3.CDN的原理"></a>3.CDN的原理</h1><blockquote><p>CDN和DNS有看密不可分的联系，先来看一下DNS的解析域名过程，在浏览器输入 <a href="http://www.test.com/">www.test.com</a> 的解析过程如<br>下：</p><p>(1) 检查浏览器缓存<br>(2) 检查操作系统缓存，常见的如hosts文件<br>(3) 检查路由器缓存<br>(4)如果前几步都没没找到，会向ISP(网络服务提供商)的LDNS服务器查询<br>(5) 如果LDNS服务器没找到，会向根域名服务器(Rot Server)请求解析，分为以下几步:</p><ul><li>根服务器返回顶级域名(TLD)服务器如 .com，.cn ， .org 等的地址，该例子中会返回 .com 的地址</li><li>接着向顶级域名服务器发送请求，然后会返回次级域名(SLD)服务器的地址，本例子会返回 .test 的地址</li><li>接着向次级域名服务器发送请求，然后会返回通过域名查询到的目标IP，本例子会返回 <a href="http://www.test.com/">www.test.com</a> 的地址</li></ul><p>Local DNS Server会缓存结果，并返回给用户，缓存在系统中</p></blockquote><h2 id="CDN的工作原理："><a href="#CDN的工作原理：" class="headerlink" title="CDN的工作原理："></a>CDN的工作原理：</h2><blockquote><p>(1) 用户未使用CDN缓存资源的过程:<br>1.浏览器通过DNS对域名进行解析 (就是上面的DNS解析过程)依次得到此域名对应的IP地址</p><p>2.浏览器根据得到的IP地址，向域名的服务主机发送数据请求</p><p>3.服务器向浏览器返回响应数据</p><p>(2) 用户使用CDN缓存资源的过程:<br>1.对于点击的数据的URL，经过本地DNS系统的解析，发现该URL对应的是一个CDN专用的DNS服务器，DNS系统就会将域名解析权交给CNAME指向的CDN专用的DNS服务器</p><p>2.CND专用DNS服务器将CND的全局负载均衡设备IP地址返回给用户</p><p>3.用户向CDN的全局负载均衡设备发起数据请求</p><p>4.CDN的全局负载均衡设备根据用户的IP地址，以及用户请求的内容URL，选择一台用户所属区域的区域负载均衡设备，告诉用户向这台设备发起请求</p><p>5.区域负载均衡设备选择一台合适的缓存服务器来提供服务，将该缓存服务器的IP地址返回给全局负载均衡设5备</p><p>6.全局负载均衡设备把服务器的IP地址返回给用户</p><p>7.用户向该缓存服务器发起请求，缓存服务器响应用户的请求，将用户所需内容发送至用户终端</p><p>如果缓存服务器没有用户想要的内容，那么缓存服务器就会向它的上一级缓存服务器请求内容，以此类推，直到获取到需要的资源。最后如果还是没有，就会回到自己的服务器去获取资源</p></blockquote><blockquote><p>CNAME(意为:别名): 在域名解析中，实际上解析出来的指定域名对应的IP地址，或者该域名的一个CNAME，然后再根据这个CNAME来查找对应的IP地址</p></blockquote><h1 id="4-CDN的使用场景"><a href="#4-CDN的使用场景" class="headerlink" title="4.CDN的使用场景"></a>4.CDN的使用场景</h1><blockquote><ul><li><strong>使用第三方的CDN服务</strong>: 如果想要开源一些项目，可以使用第三方的CDN服务</li><li><strong>使用CDN进行静态资源的缓存</strong>: 将自己网站的静态资源放在CDN上，比如scss、图片等。可以将整个项目放在CDN上，完成一键部署</li><li><strong>直播传送</strong>:直播本质上是使用流媒体进行传送，CDN也是支持流媒体传送的，所以直播完全可以使用CDN来提高访问速度。CDN在处理流媒体的时候与处理普通静态文件有所不同，普通文件如果在边缘节点没有找到的话，就会去上一层接着寻找，但是流媒体本身数据量就非常大，如果使用回源的方式，必然会带来性能问题，所以流媒体一般采用的都是主动推送的方式来进行</li></ul></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="为什么要用redux"><a href="#为什么要用redux" class="headerlink" title="为什么要用redux"></a>为什么要用redux</h1><blockquote><p>redux 提供的模式和工具使你更容易理解应用程序中的状态何时、何地、为什么以及如何更新，以及当这些更改发生时，你应用程序逻辑将如何表现</p></blockquote><h1 id="什么是redux"><a href="#什么是redux" class="headerlink" title="什么是redux"></a>什么是redux</h1><blockquote><p>redux 是一个使用叫作 “actions” 的事件去管理和更新应用状态的模式和工具库。它以集中式Store 的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新</p></blockquote><h1 id="什么时候用"><a href="#什么时候用" class="headerlink" title="什么时候用"></a>什么时候用</h1><blockquote><ul><li>在应用的大量地方，存在大量的状态</li><li>应用状态会随着时间的推移而频繁更新</li><li>更新该状态的逻辑可能很复杂</li><li>中型和大型代码量的应用，很多人协同开发</li></ul></blockquote><h1 id="Redux-库和工具"><a href="#Redux-库和工具" class="headerlink" title="Redux 库和工具"></a>Redux 库和工具</h1><h2 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React.Redux"></a>React.Redux</h2><blockquote><p>redux可以结合任何UI框架 一起使用，最常与react一起使用，他让react组件和redux有了交互，可以从store读取一些state ，可以通过dispatch actions 来更新store</p></blockquote><h2 id="Redux-Toolkit"><a href="#Redux-Toolkit" class="headerlink" title="Redux Toolkit"></a>Redux Toolkit</h2><blockquote><p>Redux Toolkit 使我们推荐的编写Redux 逻辑的方法，它包含我们认为对于构建redux应用程序必不可少的包和函数，redux toolkit 构建在我们建议的最佳实践中，简化了大多数的redux任务，防止了常见错误，并使得编写redux 应用程序变得更加容易</p></blockquote><h2 id="Redux-DevTools拓展"><a href="#Redux-DevTools拓展" class="headerlink" title="Redux DevTools拓展"></a>Redux DevTools拓展</h2><blockquote><p>Redux DevTools拓展 可以显示redux 存储中状态随时间变化的历史记录，这允许你有效地调试应用程序，包括使用强大的技术，如 “时间旅行调试”</p></blockquote>]]></content>
     
     
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;CDN(Content Delivery Network，内容分发网络)是指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传</summary>
-      
+    <summary type="html">什么是redux？他有什么作用？</summary>
     
     
     
-    <category term="webpack" scheme="https://isgov.github.io/categories/webpack/"/>
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
     
     
-    <category term="性能优化" scheme="https://isgov.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>二级路由</title>
+    <link href="https://isgov.github.io/posts/%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1/"/>
+    <id>https://isgov.github.io/posts/%E4%BA%8C%E7%BA%A7%E8%B7%AF%E7%94%B1/</id>
+    <published>2024-03-12T07:29:57.000Z</published>
+    <updated>2024-03-14T08:33:17.516Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="二级路由"><a href="#二级路由" class="headerlink" title="二级路由"></a>二级路由</h1><blockquote><p>需要在父级路由中使用 outlet(子路由子级占位符)，并且使用时需要传入 组件 <child/></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function App() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;BrowserRouter&gt;</span><br><span class="line">      &lt;Routes&gt;</span><br><span class="line">        &lt;Route path=&quot;/&quot; element=&#123;&lt;Wrap /&gt;&#125;&gt;</span><br><span class="line">          &lt;Route index element=&#123;&lt;Home /&gt;&#125;&gt;&lt;/Route&gt;</span><br><span class="line">        &lt;/Route&gt;</span><br><span class="line">      &lt;/Routes&gt;</span><br><span class="line">    &lt;/BrowserRouter&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="v6优化"><a href="#v6优化" class="headerlink" title="v6优化"></a>v6优化</h2><blockquote><p>会先渲染明确了的组件，动态组件优先级会比明确名字组件优先级低，之前是按顺序进行确定优先级</p></blockquote>]]></content>
+    
+    
+    <summary type="html">二级路由</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>router</title>
+    <link href="https://isgov.github.io/posts/router/"/>
+    <id>https://isgov.github.io/posts/router/</id>
+    <published>2024-03-12T07:28:57.000Z</published>
+    <updated>2024-03-14T08:33:03.637Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="实现一个router"><a href="#实现一个router" class="headerlink" title="实现一个router"></a>实现一个router</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote><p><strong>BrowserRouter 的职责：</strong></p><p>将react的生命周期和history结合起来</p><p>再将path和route进行关联</p><p>对path进行管理</p><p><strong>route的职责：</strong></p><p>什么路径对应什么组件，组件和路径一一对应</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//react中的路由使用</span><br><span class="line">&lt;BrowserRouter&gt;</span><br><span class="line">    &lt;&gt;</span><br><span class="line">    &lt;Route path=&quot;/&quot; componnet=&#123;Home&#125;&gt;</span><br><span class="line">    </span><br><span class="line">        &lt;/Route&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">&lt;/BrowserRouter&gt;</span><br></pre></td></tr></table></figure><h2 id="封装router"><a href="#封装router" class="headerlink" title="封装router"></a>封装router</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useEffect, useState &#125; from &quot;react&quot;;</span><br><span class="line"></span><br><span class="line">const RouterContext = React.createContext();</span><br><span class="line">// 将react的生命周期和history结合起来</span><br><span class="line">// 再将path和route进行关联</span><br><span class="line">// 对path进行管理</span><br><span class="line">function BrowserRouter(props) &#123;</span><br><span class="line">  const [path, setPath] = useState(() =&gt; &#123;</span><br><span class="line">    const &#123; pathname &#125; = window.location;</span><br><span class="line">    return pathname || &quot;/&quot;;</span><br><span class="line">  &#125;);</span><br><span class="line">  const goPath = function (path) &#123;</span><br><span class="line">    setPath(path);</span><br><span class="line">    window.history.pushState(&#123; path &#125;, &quot;&quot;, path);</span><br><span class="line">  &#125;;</span><br><span class="line">  const RouterData = &#123;</span><br><span class="line">    path,</span><br><span class="line">    goPath,</span><br><span class="line">  &#125;;</span><br><span class="line">  function handlePopState()&#123;</span><br><span class="line">    const &#123;pathname&#125; = window.location</span><br><span class="line">    setPath(pathname)</span><br><span class="line">  &#125;</span><br><span class="line">//   监听浏览器回退</span><br><span class="line"> useEffect(()=&gt;&#123;</span><br><span class="line">    window.addEventListener(&quot;popstate&quot;,handlePopState)</span><br><span class="line">    console.log(&quot;pops&quot;);</span><br><span class="line">    return function()&#123;</span><br><span class="line">        window.removeEventListener(&quot;popstate&quot;,handlePopState)</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;,[])</span><br><span class="line">  return (</span><br><span class="line">    &lt;RouterContext.Provider value=&#123;RouterData&#125;&gt;</span><br><span class="line">      &#123;props.children&#125;</span><br><span class="line">    &lt;/RouterContext.Provider&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">// 什么路径对应什么组件，组件和路径一一对应</span><br><span class="line">function Route(props) &#123;</span><br><span class="line">  const &#123; path, component: Component &#125; = props;</span><br><span class="line">  return (</span><br><span class="line">    &lt;RouterContext.Consumer&gt;</span><br><span class="line">      &#123;(router) =&gt; &#123;</span><br><span class="line">        return path === router.path ? &lt;Component /&gt; : null;</span><br><span class="line">      &#125;&#125;</span><br><span class="line">    &lt;/RouterContext.Consumer&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">export &#123; BrowserRouter, Route,RouterContext &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure><blockquote><p>使用 context 的好处是可以隔组件传值，而且context不受shouldcomponentupdate影响</p></blockquote><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function ButtonView()&#123;</span><br><span class="line">  return (</span><br><span class="line">  &lt;BrowserRouter&gt;</span><br><span class="line">  &lt;RouterContext.Consumer&gt;</span><br><span class="line">    &#123;(router)=&gt;(</span><br><span class="line">        &lt;&gt;</span><br><span class="line">          &lt;button onClick=&#123;()=&gt;router.goPath(&#x27;/&#x27;)&#125;&gt;首页&lt;/button&gt;</span><br><span class="line">          &lt;button onClick=&#123;()=&gt;router.goPath(&#x27;/about&#x27;)&#125;&gt;关于&lt;/button&gt;</span><br><span class="line">          &lt;button onClick=&#123;()=&gt;router.goPath(&#x27;/user&#x27;)&#125;&gt;用户&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">          &lt;Route path=&quot;/&quot; component=&#123;Home&#125; /&gt;</span><br><span class="line">       &lt;Route path=&quot;/about&quot; component=&#123;About&#125; /&gt;</span><br><span class="line">       &lt;Route path=&quot;/user&quot; component=&#123;User&#125; /&gt;</span><br><span class="line">        &lt;/&gt;</span><br><span class="line">    )&#125;</span><br><span class="line">  &lt;/RouterContext.Consumer&gt;</span><br><span class="line">  &lt;/BrowserRouter&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">实现一个router</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>history对象</title>
+    <link href="https://isgov.github.io/posts/history%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://isgov.github.io/posts/history%E5%AF%B9%E8%B1%A1/</id>
+    <published>2024-03-12T07:27:57.000Z</published>
+    <updated>2024-03-14T08:32:43.251Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="history对象"><a href="#history对象" class="headerlink" title="history对象"></a>history对象</h1><blockquote><p>history 对象提供了对浏览器回话历史的访问，总共5个api</p></blockquote><blockquote><ol><li><p>pushState：创建一个新的url，并跳转至该url</p><p>pushState() 需要三个参数：</p><ul><li>​一个状态对象</li><li>一个标题(目前可忽略)</li><li>一个url(可选)</li></ul></li></ol><ul><li><strong>状态对象：</strong>状态对象state 是一个javascript 对象，通过pushState() 创建新的历史记录条目，无论什么时候用户导航到新的状态，popState 事件都会被触发，且该事件的 state 属性包含该历史记录条目状态对象的副本。状态对象可以是被序列化的任何东西，原因是在Firefox 将状态对象保存在用户的磁盘上，以便在用户重启浏览器时使用，我们规定了状态对象在序列化表示后有640k 的大小限制。如果你给 pushState() 方法传了一个序列化后大于640k的状态对象，该方法会抛出异常，如果你需要更大的空间，建议使用sessionStorage 以及locaStorage</li><li><strong>标题：</strong>Firebox 目前忽略这个参数，但未来可能会用到，在此处传一个空字符串应该可以安全的防范未来这个方法的更改，或者，你可以为跳转的 state 传递一个短标题</li><li><strong>URL：</strong>该参数定义了新的历史URL记录，注意，调用 pushState() 后浏览器并不会立即加载这个URL，但可能会在稍后某些情况下加载这个URL，比如在用户重新打开浏览器时，新URL不必须为绝对路径，如果新URL 是相对路径，那么它将被作为相对于当前URL 处理，新URL 必须与当前URL 同源，否则 pushState() 会抛出一个异常，该参数时可选的，缺省为当前URL</li></ul></blockquote><blockquote><p>2.popState</p><p>调用 history.pushState() 或者 history.replaceState() 不会触发popState 事件 ,popstate 事件只会在浏览器某些行为下触发，比如点击<strong>后退 前进</strong>按钮(或者在JavaScript中调用 history.back()、history.forward()、history.go()方法)，此外，a标签的锚点也会触发该事件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var stateObj = &#123;foo:&quot;bar&quot;&#125;</span><br><span class="line">history.pushState(stateObj,&quot;page 2&quot;,&quot;bar.html&quot;)</span><br></pre></td></tr></table></figure><p>这将使浏览器地址栏显示为 <a href="http://mozila,org/bar.html%EF%BC%8C%E4%BD%86%E5%B9%B6%E4%B8%8D%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD">http://mozila,org/bar.html，但并不会导致浏览器加载</a> bar.html ，甚至不会检查bar.html 是否存在</p><p>假设现在用户又访问了 <a href="http://google.com,然后点击了返回按钮,此时,地址栏将显示/">http://google.com，然后点击了返回按钮，此时，地址栏将显示</a> http:imozilia.org&#x2F;bar.html，同时页面会触发 popstate 事件，事件对象state中包含了 stateObj的一份拷贝。页面本身与 foo.html 一样，尽管其在 popstate 事件中可能会修改自身的内容</p></blockquote><blockquote><p>3.replaceState:修改当前url</p><p>history,replacestate()的使用与 history.pushstate()非常相似，<strong>区别在于replacestate()是修改了当前的历史记录项而不是新建一个</strong>。注意这并不会阻止其在全局浏览器历史记录中创建一个新的历史记录项<br>replacestate()的使用场景在于为了响应用户操作，你想要更新状态对象 slale 或者当前历史记录的 URL</p></blockquote><blockquote><p>4.back:返回后一个url</p><p>在history中向后跳转</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">back</span>()</span><br></pre></td></tr></table></figure></blockquote><blockquote><p>5.forward:返回前一个url</p><p>这和用户点击浏览器回退按钮的效果相同</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">forward</span>()</span><br></pre></td></tr></table></figure></blockquote><blockquote><p>6.go:跳转到指定页面的url</p><p>当前页面为0</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure></blockquote>]]></content>
+    
+    
+    <summary type="html">什么是history对象，它有什么属性？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用ref获取state中上一次的值</title>
+    <link href="https://isgov.github.io/posts/%E4%BD%BF%E7%94%A8ref%E8%8E%B7%E5%8F%96state%E4%B8%AD%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E5%80%BC/"/>
+    <id>https://isgov.github.io/posts/%E4%BD%BF%E7%94%A8ref%E8%8E%B7%E5%8F%96state%E4%B8%AD%E4%B8%8A%E4%B8%80%E6%AC%A1%E7%9A%84%E5%80%BC/</id>
+    <published>2024-03-12T07:26:57.000Z</published>
+    <updated>2024-03-14T08:32:09.966Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="使用ref获取state中上一次的值"><a href="#使用ref获取state中上一次的值" class="headerlink" title="使用ref获取state中上一次的值"></a>使用ref获取state中上一次的值</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const [count ,setCount] = useState(0)</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    setCount(count+1)</span><br><span class="line">  &#125;</span><br><span class="line">  useEffect(()=&gt;&#123;</span><br><span class="line">    console.log(&quot;useEffect count&quot;);</span><br><span class="line">    inputRef.current = count; // 更新ref的值</span><br><span class="line">  &#125;)</span><br><span class="line">  console.log(&quot;beforCount count&quot;);</span><br><span class="line">  const beforCount = inputRef.current;</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;div  &gt;now:&#123;count&#125; befor:&#123;beforCount&#125;&lt;/div&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;更新&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">使用ref获取state中上一次的值</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>让useEffect在更新时执行</title>
+    <link href="https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/"/>
+    <id>https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/</id>
+    <published>2024-03-12T07:24:57.000Z</published>
+    <updated>2024-03-14T08:32:15.567Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="让useEffect在更新时执行"><a href="#让useEffect在更新时执行" class="headerlink" title="让useEffect在更新时执行"></a>让useEffect在更新时执行</h1><blockquote><p>正常情况下useEffect 在每次render 的时候都会执行一次，现在想让他只有在state中的count 发生变化了再执行，刷新时不执行</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const [count ,setCount] = useState(0)</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    setCount(count+1)</span><br><span class="line">  &#125;</span><br><span class="line">  useEffect(()=&gt;&#123;</span><br><span class="line">   if(!inputRef.current.flag)&#123;</span><br><span class="line">    inputRef.current.flag = true;</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">    console.log(&quot;useEffect更新&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;div ref=&#123;inputRef&#125; &gt;&#123;count&#125;&lt;/div&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;更新&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">让useEffect在更新时执行</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>useeRef</title>
+    <link href="https://isgov.github.io/posts/useeRef/"/>
+    <id>https://isgov.github.io/posts/useeRef/</id>
+    <published>2024-03-12T07:24:57.000Z</published>
+    <updated>2024-03-14T08:31:33.918Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="useeRef"><a href="#useeRef" class="headerlink" title="useeRef"></a>useeRef</h1><blockquote><p>可以直接获取dom ，返回一个可变的ref对象</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    inputRef.current.focus()</span><br><span class="line">  &#125;</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;input ref=&#123;inputRef&#125; type=&quot;text &quot;&gt;&lt;/input&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;聚焦&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">     </span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">useeRef</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>useMemo</title>
+    <link href="https://isgov.github.io/posts/useMemo/"/>
+    <id>https://isgov.github.io/posts/useMemo/</id>
+    <published>2024-03-12T07:23:57.000Z</published>
+    <updated>2024-03-14T08:31:21.533Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="useMemo-函数式组件使用-相当于class组件的pureComponent"><a href="#useMemo-函数式组件使用-相当于class组件的pureComponent" class="headerlink" title="useMemo(函数式组件使用 相当于class组件的pureComponent)"></a>useMemo(函数式组件使用 相当于class组件的pureComponent)</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cosnt memoizedValue = useMemo(()=&gt;computeExpensiveValue(a,b),[a,b])</span><br></pre></td></tr></table></figure><blockquote><p>返回一个 memozied值</p><p>把 “ 创建” 函数和依赖项数组作为参数传入 useMemo，它仅仅会在某个依赖项发生改变时才会重新计算 memoized值，这种优化有助于避免在每次渲染时都进行高开销的计算</p><p>传入 useMemo 的函数会在渲染期间执行，请不要再这个函数内部执行与渲染无关的操作，诸如副作用这类的操作属于 useEffect 的使用范畴，而不是useMemo</p><p>如果没有提供依赖项数组，useMemo 会在每次渲染时重新计算新的值</p><p>你可以把 useMemo作为优化性能的手段，但不要把他当成语义上的保证</p></blockquote>]]></content>
+    
+    
+    <summary type="html">useMemo？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PureComponent</title>
+    <link href="https://isgov.github.io/posts/PureComponent/"/>
+    <id>https://isgov.github.io/posts/PureComponent/</id>
+    <published>2024-03-12T07:22:57.000Z</published>
+    <updated>2024-03-14T08:30:58.163Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="PureComponent"><a href="#PureComponent" class="headerlink" title="PureComponent"></a>PureComponent</h1><blockquote><p>如果父组件需要传入很多属性，子组件要根据这些属性来判断要不要进行更新时，如果一个一个进行判断的话，会很麻烦，而react 有一个api：PureComponent就可以自己来判断属性是否变化，从而决定子组件是否重新渲染</p><p><strong>使用</strong>：class Button extends React.PureComponent{} 直接继承即可</p><p><strong>原理</strong>：把props所有的属性拿出来遍历，把state所有的属性拿出来遍历，只要有属性的引用不一样(&#x3D;&#x3D;&#x3D;)，就更新组件，否则不更新</p></blockquote>]]></content>
+    
+    
+    <summary type="html">PureComponent</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>useCallback</title>
+    <link href="https://isgov.github.io/posts/useCallback/"/>
+    <id>https://isgov.github.io/posts/useCallback/</id>
+    <published>2024-03-12T07:21:57.000Z</published>
+    <updated>2024-03-14T08:30:43.938Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h1><blockquote><p>下面这段代码，每次点击按钮 所有按钮都会重新渲染一遍，这样是不现实的，如果页面内容多了，每次渲染多次会对用户体验不好</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const [count1,setCount1] = useState(0);</span><br><span class="line">  const [count2,setCount2] = useState(0);</span><br><span class="line">  const [count3,setCount3] = useState(0);</span><br><span class="line">  const handleClickButton1 =()=&gt;&#123;</span><br><span class="line">    setCount1(count1 + 1);</span><br><span class="line">  &#125;</span><br><span class="line">  const handleClickButton2 =useCallback(()=&gt;&#123;</span><br><span class="line">    setCount2(count2 + 1);</span><br><span class="line">  &#125;,[count2])</span><br><span class="line">  console.log(&quot;App更新&quot;);</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Button onClickButton=&#123;handleClickButton1&#125;&gt;Button1&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Button onClickButton=&#123;handleClickButton2&#125;&gt;Button2&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Button onClickButton=&#123;()=&gt;&#123;setCount3(count3 + 1)&#125;&#125;&gt;Button2&lt;/Button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p><strong>可以使用shouldComponentUpdate 来判断函数是否相等来决定是否要更新</strong>，但此时会有一个问题，因为每次重新渲染的时候，箭头函数跟按钮里面的函数都会重新生成一次，导致点击按钮2的时候 1 3 跟着一起变(一起更新)</p><p><strong>useCallback可以缓存函数，每次都是原来的函数，只要依赖不变，他就不会发生改变</strong></p></blockquote>]]></content>
+    
+    
+    <summary type="html">什么是useCallback？有什么作用？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Effect</title>
+    <link href="https://isgov.github.io/posts/Effect/"/>
+    <id>https://isgov.github.io/posts/Effect/</id>
+    <published>2024-03-12T07:20:57.000Z</published>
+    <updated>2024-03-14T08:51:06.310Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Effect-Hook"><a href="#Effect-Hook" class="headerlink" title="Effect Hook"></a>Effect Hook</h1><blockquote><p><strong>在组件中执行过数据获取、订阅或者手动修改过DOM，我们统一把这些数据称为“副作用”，或者简称为“作用”</strong></p><p>useEffect 是一个Effect Hook ，给函数组件增加了操作副作用的能力，<strong>它跟class组件中的componentDidMount、componentDidUpdate和componentWillUnmount 具有相同的用途，只不过被合并成了一个API</strong></p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Num ()&#123;</span><br><span class="line">  const [num,setNum] = useState(0);</span><br><span class="line">  useEffect(()=&gt;&#123;</span><br><span class="line">    console.log(&#x27;useEffect&#x27;);</span><br><span class="line">  &#125;)</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;p&gt;num:&#123;num&#125;&lt;/p&gt;</span><br><span class="line">    &lt;button onClick=&#123;()=&gt;setNum(num+1)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div&gt;</span><br><span class="line">      &lt;Num&gt;&lt;/Num&gt;</span><br><span class="line">    &lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p> 18版本后，effect仅在开发模式(development)下，且使用了严格模式(Strict Mode)下会触发两次，生产环境不会</p><p>之所以执行两次，是为了模拟立即卸载组件和重新挂载组件，为了帮助开发者提前发现重复挂载造成的Bug的代码</p><p><strong>18版本加入了分片更新 fiber架构，组件可能执行多次，目的就是我们在开发的时候，useEefect执行多次不会影响组件状态</strong></p></blockquote><h1 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h1><blockquote><ol><li><strong>只能在函数最外层调用hook，不要再循环、条件判断或者子函数中调用</strong></li><li><strong>只能在React的函数组件中调用hook，不要再其他Javascript函数中调用</strong></li></ol></blockquote>]]></content>
+    
+    
+    <summary type="html">什么是Effect Hook？有什么作用？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高阶组件</title>
+    <link href="https://isgov.github.io/posts/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/"/>
+    <id>https://isgov.github.io/posts/%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/</id>
+    <published>2024-03-12T07:19:57.000Z</published>
+    <updated>2024-03-14T08:29:27.737Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h1><blockquote><p>高阶组件(HOC) 是React 中用于复用组件逻辑的一种高级技巧，HOC自身不是React API 的一部分，它是一种基于React 的组合特性而形成的设计模式</p><p><strong>高阶组件的参数为组件 返回值也为组件</strong></p></blockquote><h1 id="发布订阅者模型"><a href="#发布订阅者模型" class="headerlink" title="发布订阅者模型"></a>发布订阅者模型</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">// 发布订阅者模型</span><br><span class="line">class DataResource&#123;</span><br><span class="line">  constructor()&#123;</span><br><span class="line">    this.listener= [];</span><br><span class="line">  &#125;</span><br><span class="line">  // 订阅者--订报纸</span><br><span class="line">  subcribe(listener)&#123;</span><br><span class="line">    this.listener.push(listener);</span><br><span class="line">  &#125;</span><br><span class="line">  // 发布者--报社</span><br><span class="line">  publish(data)&#123;</span><br><span class="line">    for(let i =0;i&lt;this.listener.length;i++)&#123;</span><br><span class="line">      const listener = this.listener[i];</span><br><span class="line">      listener(data);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">const date_resoutce = new DataResource();</span><br><span class="line">// 小明订报纸</span><br><span class="line">date_resoutce.subcribe((data)=&gt;&#123;</span><br><span class="line">  console.log(&#x27;小明收到报纸了&#x27;,data);</span><br><span class="line">&#125;)</span><br><span class="line">// 小芬订报纸</span><br><span class="line">date_resoutce.subcribe((data)=&gt;&#123;</span><br><span class="line">  console.log(&#x27;小芬收到报纸了&#x27;,data);</span><br><span class="line">&#125;)</span><br><span class="line">// 报社发布报纸</span><br><span class="line">date_resoutce.publish(&#x27;人民日报&#x27;);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">高阶组件</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hook</title>
+    <link href="https://isgov.github.io/posts/hook/"/>
+    <id>https://isgov.github.io/posts/hook/</id>
+    <published>2024-03-12T07:19:57.000Z</published>
+    <updated>2024-03-14T08:29:59.292Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><blockquote><p>HOOK 解决了我们五年来编写和维护成千上万的组件时遇到的各种看起来不相关的问题</p></blockquote><h1 id="1-在组件之间复用状态逻辑很难"><a href="#1-在组件之间复用状态逻辑很难" class="headerlink" title="1.在组件之间复用状态逻辑很难"></a>1.在组件之间复用状态逻辑很难</h1><blockquote><p>React 没有提供将可复用性行为 “附加” 到组件的途径(例如 把组件连接到store)，如果你使用过Reaact一段时间，你会熟悉一些解决此类问题的方法，比如render props 和高阶组件(redux)</p><p>你会发现这类方法需要重新组织你的组件架构，使代码更加难以理解也会形成“嵌套地狱”</p><p>这说明一个更深层次的问题：<strong>React 需要为共享状态逻辑提供更好的原生途径(HOOKS)</strong></p><p><strong>可以使用HOOK 从组件中提取状态逻辑，使得这些逻辑可以单独测试并复用，Hook 使你在无需修改组件结构的情况下复用状态逻辑，这使得在组件间或社区内共享hook变得更加便捷</strong></p></blockquote><h1 id="2-复杂组件变得难以理解"><a href="#2-复杂组件变得难以理解" class="headerlink" title="2.复杂组件变得难以理解"></a>2.复杂组件变得难以理解</h1><h1 id="3-难以理解的class"><a href="#3-难以理解的class" class="headerlink" title="3.难以理解的class"></a>3.难以理解的class</h1><h1 id="什么是hooks"><a href="#什么是hooks" class="headerlink" title="什么是hooks"></a>什么是hooks</h1><blockquote><p>hook就是可以让你在一些函数组件里“钩入” React state及生命周期等特性的函数，<strong>HOOK不能在class组件中使用</strong></p></blockquote>]]></content>
+    
+    
+    <summary type="html">什么是hook？有什么作用？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>useState</title>
+    <link href="https://isgov.github.io/posts/useState/"/>
+    <id>https://isgov.github.io/posts/useState/</id>
+    <published>2024-03-12T07:19:57.000Z</published>
+    <updated>2024-03-14T08:30:13.350Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Num ()&#123;</span><br><span class="line">  // 声明一个 变量</span><br><span class="line">  // useState就是一个hook</span><br><span class="line">  // num是在渲染中需要的数据</span><br><span class="line">  // setNum 是提供修改数据的方法</span><br><span class="line">  // useState的返回值就是一个数组</span><br><span class="line">  const [num,setNum] = useState(0);</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;button onClick=&#123;()=&gt;setNum(num+1)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">    &#123;num&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div&gt;</span><br><span class="line">      &lt;Num&gt;&lt;/Num&gt;</span><br><span class="line">    &lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">什么是useState？有什么作用？</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fragments</title>
+    <link href="https://isgov.github.io/posts/Fragments/"/>
+    <id>https://isgov.github.io/posts/Fragments/</id>
+    <published>2024-03-12T07:18:57.000Z</published>
+    <updated>2024-03-14T08:29:11.051Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h1><blockquote><p>Fragment 允许你将子列表分组，而无需向DOM 添加额外的节点</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">  </span><br><span class="line"> render()&#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;React.Fragment&gt;</span><br><span class="line">      &lt;div&gt;&lt;/div&gt;</span><br><span class="line">      &lt;div&gt;&lt;/div&gt;</span><br><span class="line">      &lt;div&gt;&lt;/div&gt;</span><br><span class="line">      &lt;div&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/React.Fragment&gt;</span><br><span class="line">  )</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>也可以使用 &lt;&gt; &lt;&#x2F;&gt;</p></blockquote>]]></content>
+    
+    
+    <summary type="html">Fragments</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在高阶组件中转发refs</title>
+    <link href="https://isgov.github.io/posts/%E5%9C%A8%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E4%B8%AD%E8%BD%AC%E5%8F%91refs/"/>
+    <id>https://isgov.github.io/posts/%E5%9C%A8%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6%E4%B8%AD%E8%BD%AC%E5%8F%91refs/</id>
+    <published>2024-03-12T07:17:57.000Z</published>
+    <updated>2024-03-14T08:28:53.578Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="在高阶组件中转发refs"><a href="#在高阶组件中转发refs" class="headerlink" title="在高阶组件中转发refs"></a>在高阶组件中转发refs</h1><blockquote><p>这个技巧对高阶组件(也<strong>被称为HOC</strong>) 特别有用</p></blockquote>]]></content>
+    
+    
+    <summary type="html">在高阶组件中转发refs</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>forwardRef</title>
+    <link href="https://isgov.github.io/posts/forwardRef/"/>
+    <id>https://isgov.github.io/posts/forwardRef/</id>
+    <published>2024-03-12T07:16:57.000Z</published>
+    <updated>2024-03-14T08:28:33.110Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="forwardRef"><a href="#forwardRef" class="headerlink" title="forwardRef"></a>forwardRef</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// ForwardButton 返回一个组件</span><br><span class="line">const ForwardButton =React.forwardRef((props,ref)=&gt;&#123;</span><br><span class="line">  &lt;button ref=&#123;ref&#125; &gt;</span><br><span class="line">    &#123;props.children&#125;</span><br><span class="line">  &lt;/button&gt;</span><br><span class="line">&#125;)</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor()&#123;</span><br><span class="line">    super();</span><br><span class="line">    this.forwardRef_ref = React.createRef();</span><br><span class="line">    console.log(&quot; this.forwardRef_ref&quot;, this.forwardRef_ref);</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    console.log(&quot; this.forwardRef_ref&quot;, this.forwardRef_ref);</span><br><span class="line">   </span><br><span class="line">  &#125;</span><br><span class="line"> render()&#123;</span><br><span class="line">  return(</span><br><span class="line">    &lt;ForwardButton ref=&#123;this.forwardRef_ref&#125;&gt;</span><br><span class="line">      &lt;h1&gt;hello word&lt;/h1&gt;</span><br><span class="line">    &lt;/ForwardButton&gt;</span><br><span class="line">  )</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">forwardRef</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Refs</title>
+    <link href="https://isgov.github.io/posts/Refs/"/>
+    <id>https://isgov.github.io/posts/Refs/</id>
+    <published>2024-03-12T07:15:57.000Z</published>
+    <updated>2024-03-14T08:28:11.021Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Refs-and-the-DOM"><a href="#Refs-and-the-DOM" class="headerlink" title="Refs and the DOM"></a>Refs and the DOM</h1><blockquote><p>Refs 提供了一种方式，<strong>允许我们访问DOM节点，或在render方法中创建的React元素(class组件)</strong></p></blockquote><blockquote><p>在典型的react数据流中，props是父组件与子组件交互的唯一方式，要修改一个子组件，你需要使用新的props来重新渲染它。但是，<strong>在某种情况下，你需要在典型数据流之外强制修改子组件，被修改的子组件可能是一个React组件的示例，也可能是</strong></p></blockquote><h1 id="何时使用？"><a href="#何时使用？" class="headerlink" title="何时使用？"></a>何时使用？</h1><blockquote><ul><li>管理焦点，文本选择或媒体播放</li><li>触发强制动画</li><li>集成第三方DOM库</li></ul><p>避免使用ref来做任何可以通过声明式实现来完成的事情</p><p>例如：避免在DIalog 组件中暴露open()和close()方法，最好传递isOpen属性</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    super();</span><br><span class="line">    this.dom_refs = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    console.log(this.dom_refs);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div ref=&#123;this.dom_refs&#125;&gt;</span><br><span class="line">      hello react</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p><strong>ref获取到的dom 和 document获取到的dom是一样的</strong></p></blockquote><h1 id="函数式组件使用ref"><a href="#函数式组件使用ref" class="headerlink" title="函数式组件使用ref"></a>函数式组件使用ref</h1><blockquote><p>一般来说 函数式组件没有实例不支持ref，一般使用forwardRef</p></blockquote><h1 id="ref的回调函数"><a href="#ref的回调函数" class="headerlink" title="ref的回调函数"></a>ref的回调函数</h1><blockquote><p>通过ref的回调函数获取 dom</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 子组件</span><br><span class="line">class Child extends React.Component&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    return &lt;input ref=&#123;this.props.InputRef&#125; /&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    console.log(this.InputRef);</span><br><span class="line">  &#125;</span><br><span class="line"> render()&#123;</span><br><span class="line">  return(</span><br><span class="line">    &lt;Child InputRef=&#123;(el)=&gt;this.InputRef=el&#125;&gt;&lt;/Child&gt;</span><br><span class="line">  )</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">Refs and the DOM</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>错误边界</title>
+    <link href="https://isgov.github.io/posts/%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8C/"/>
+    <id>https://isgov.github.io/posts/%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8C/</id>
+    <published>2024-03-12T07:14:57.000Z</published>
+    <updated>2024-03-14T08:27:52.014Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="错误边界-Error-Boundarles"><a href="#错误边界-Error-Boundarles" class="headerlink" title="错误边界(Error Boundarles)"></a>错误边界(Error Boundarles)</h1><blockquote><p>部分UI的JavaScript 错误不应该导致整个应用崩溃，为了解决这个问题，React16推出一个新的概念—错误边界</p></blockquote><blockquote><p>错误边界是一种React组件，这种组件可以捕获并打印发生在其子组件树任何位置的JavaScript错误，并且，它会渲染出备用UI ，而不是渲染那些崩溃的子组件，错误边界在渲染期间、生命周期方法和整个组件树的构造函数中捕获错误</p></blockquote><blockquote><p>注意：</p><p>边界错误无法捕获以下场景中产生的错误</p><ul><li>事件处理</li><li>异步代码(setTimeOut、requestAnimactionFrame回调函数)</li><li>服务端渲染</li><li>自身抛出的错误，并非子组件</li></ul></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// 错误组件</span><br><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      hasError: false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新state 收拾下一次渲染能够显示降级后的UI</span><br><span class="line">    return &#123; hasError: true &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidCatch(error, errorInfo) &#123;</span><br><span class="line">    // 同样可以将错误日志上报给服务器</span><br><span class="line">    // logErrorToMyService(error, errorInfo)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    if(this.state.hasError)&#123;</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    return this.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ErrorBoundary&gt;</span><br><span class="line">      </span><br><span class="line">      &lt;/ErrorBoundary&gt;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">什么是错误边界</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
     
   </entry>
   
