@@ -6,7 +6,7 @@
   <link href="https://isgov.github.io/atom.xml" rel="self"/>
   
   <link href="https://isgov.github.io/"/>
-  <updated>2024-03-14T08:34:14.882Z</updated>
+  <updated>2024-03-19T03:37:27.768Z</updated>
   <id>https://isgov.github.io/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初步实现redux</title>
+    <link href="https://isgov.github.io/posts/%E5%88%9D%E6%AD%A5%E5%AE%9E%E7%8E%B0redux/"/>
+    <id>https://isgov.github.io/posts/%E5%88%9D%E6%AD%A5%E5%AE%9E%E7%8E%B0redux/</id>
+    <published>2024-03-19T02:32:57.000Z</published>
+    <updated>2024-03-19T03:37:27.768Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="初步实现redux"><a href="#初步实现redux" class="headerlink" title="初步实现redux"></a>初步实现redux</h1><blockquote><p>先看一下redux是如何使用的，从而找到切入口</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let createStore = React.createStore</span><br><span class="line">     const initStore = &#123;</span><br><span class="line">      count:0</span><br><span class="line">     &#125;</span><br><span class="line">     function reducer(state = initStore, action)&#123;</span><br><span class="line">      switch(action.type)&#123;</span><br><span class="line">        case &quot;PUT_MILK&quot;:</span><br><span class="line">          return &#123;...state,count:state.count+1&#125;</span><br><span class="line">        case &quot;PUT_BREAD&quot;:</span><br><span class="line">          return &#123;...state,count:state.count-1&#125;</span><br><span class="line">        default:</span><br><span class="line">          return state</span><br><span class="line">      &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     let store = createStore(reducer) //1</span><br><span class="line">     store.subscribe(()=&gt;console.log(store.getState())) //2</span><br><span class="line">     store.dispatch(&#123;type:&quot;PUT_MILK&quot;&#125;)//3</span><br></pre></td></tr></table></figure><blockquote><p>根据使用可以推导出</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function createStore(reducer)&#123;</span><br><span class="line">    let state ;//为空对象 初始化的时候值才会为初始值</span><br><span class="line">    let listeners  = []</span><br><span class="line">    function gerState()&#123;</span><br><span class="line">        return state</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 发布 订阅</span><br><span class="line">    function subscribe(listener)&#123;</span><br><span class="line">        listeners.push(listener)</span><br><span class="line">    &#125;</span><br><span class="line">    function dispatch(action)&#123;</span><br><span class="line">        state = reducer(state,action)</span><br><span class="line">        for(let i = 0; i &lt; listeners.length; i++)&#123;</span><br><span class="line">            const listener = listeners[i];</span><br><span class="line">            listener()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    const store = &#123;</span><br><span class="line">        gerState,</span><br><span class="line">        subscribe,</span><br><span class="line">        dispatch</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">初步实现redux</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redux执行顺序</title>
+    <link href="https://isgov.github.io/posts/redux%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/"/>
+    <id>https://isgov.github.io/posts/redux%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</id>
+    <published>2024-03-19T02:31:57.000Z</published>
+    <updated>2024-03-19T03:37:00.375Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="redux执行顺序"><a href="#redux执行顺序" class="headerlink" title="redux执行顺序"></a>redux执行顺序</h1><blockquote><ul><li>createStore,然后执行reducer，action的类型为@@redux.x.x.x,就对store进行初始化，不会去执行store.subsribe中的订阅</li><li>通过按钮点击 dispatch 发起一个action</li><li>进入reducer，去修改store的状态</li><li>去执行 subscribe 中订阅的函数</li></ul></blockquote>]]></content>
+    
+    
+    <summary type="html">redux执行顺序</summary>
+    
+    
+    
+    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
+    
+    
+    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>Redux常用方法</title>
@@ -143,16 +185,16 @@
   </entry>
   
   <entry>
-    <title>让useEffect在更新时执行</title>
-    <link href="https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/"/>
-    <id>https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/</id>
+    <title>useeRef</title>
+    <link href="https://isgov.github.io/posts/useeRef/"/>
+    <id>https://isgov.github.io/posts/useeRef/</id>
     <published>2024-03-12T07:24:57.000Z</published>
-    <updated>2024-03-14T08:32:15.567Z</updated>
+    <updated>2024-03-14T08:31:33.918Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="让useEffect在更新时执行"><a href="#让useEffect在更新时执行" class="headerlink" title="让useEffect在更新时执行"></a>让useEffect在更新时执行</h1><blockquote><p>正常情况下useEffect 在每次render 的时候都会执行一次，现在想让他只有在state中的count 发生变化了再执行，刷新时不执行</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const [count ,setCount] = useState(0)</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    setCount(count+1)</span><br><span class="line">  &#125;</span><br><span class="line">  useEffect(()=&gt;&#123;</span><br><span class="line">   if(!inputRef.current.flag)&#123;</span><br><span class="line">    inputRef.current.flag = true;</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">    console.log(&quot;useEffect更新&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;div ref=&#123;inputRef&#125; &gt;&#123;count&#125;&lt;/div&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;更新&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="useeRef"><a href="#useeRef" class="headerlink" title="useeRef"></a>useeRef</h1><blockquote><p>可以直接获取dom ，返回一个可变的ref对象</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    inputRef.current.focus()</span><br><span class="line">  &#125;</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;input ref=&#123;inputRef&#125; type=&quot;text &quot;&gt;&lt;/input&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;聚焦&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">     </span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">让useEffect在更新时执行</summary>
+    <summary type="html">useeRef</summary>
     
     
     
@@ -164,16 +206,16 @@
   </entry>
   
   <entry>
-    <title>useeRef</title>
-    <link href="https://isgov.github.io/posts/useeRef/"/>
-    <id>https://isgov.github.io/posts/useeRef/</id>
+    <title>让useEffect在更新时执行</title>
+    <link href="https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/"/>
+    <id>https://isgov.github.io/posts/%E8%AE%A9useEffect%E5%9C%A8%E6%9B%B4%E6%96%B0%E6%97%B6%E6%89%A7%E8%A1%8C/</id>
     <published>2024-03-12T07:24:57.000Z</published>
-    <updated>2024-03-14T08:31:33.918Z</updated>
+    <updated>2024-03-14T08:32:15.567Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="useeRef"><a href="#useeRef" class="headerlink" title="useeRef"></a>useeRef</h1><blockquote><p>可以直接获取dom ，返回一个可变的ref对象</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    inputRef.current.focus()</span><br><span class="line">  &#125;</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;input ref=&#123;inputRef&#125; type=&quot;text &quot;&gt;&lt;/input&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;聚焦&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">     </span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="让useEffect在更新时执行"><a href="#让useEffect在更新时执行" class="headerlink" title="让useEffect在更新时执行"></a>让useEffect在更新时执行</h1><blockquote><p>正常情况下useEffect 在每次render 的时候都会执行一次，现在想让他只有在state中的count 发生变化了再执行，刷新时不执行</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function App()&#123;</span><br><span class="line">  const inputRef = useRef();</span><br><span class="line">  const [count ,setCount] = useState(0)</span><br><span class="line">  const handleClick = ()=&gt;&#123;</span><br><span class="line">    setCount(count+1)</span><br><span class="line">  &#125;</span><br><span class="line">  useEffect(()=&gt;&#123;</span><br><span class="line">   if(!inputRef.current.flag)&#123;</span><br><span class="line">    inputRef.current.flag = true;</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">    console.log(&quot;useEffect更新&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return(</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">      &lt;div ref=&#123;inputRef&#125; &gt;&#123;count&#125;&lt;/div&gt;</span><br><span class="line">      &lt;button onClick=&#123;handleClick&#125;&gt;更新&lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">useeRef</summary>
+    <summary type="html">让useEffect在更新时执行</summary>
     
     
     
@@ -290,16 +332,16 @@
   </entry>
   
   <entry>
-    <title>hook</title>
-    <link href="https://isgov.github.io/posts/hook/"/>
-    <id>https://isgov.github.io/posts/hook/</id>
+    <title>useState</title>
+    <link href="https://isgov.github.io/posts/useState/"/>
+    <id>https://isgov.github.io/posts/useState/</id>
     <published>2024-03-12T07:19:57.000Z</published>
-    <updated>2024-03-14T08:29:59.292Z</updated>
+    <updated>2024-03-14T08:30:13.350Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><blockquote><p>HOOK 解决了我们五年来编写和维护成千上万的组件时遇到的各种看起来不相关的问题</p></blockquote><h1 id="1-在组件之间复用状态逻辑很难"><a href="#1-在组件之间复用状态逻辑很难" class="headerlink" title="1.在组件之间复用状态逻辑很难"></a>1.在组件之间复用状态逻辑很难</h1><blockquote><p>React 没有提供将可复用性行为 “附加” 到组件的途径(例如 把组件连接到store)，如果你使用过Reaact一段时间，你会熟悉一些解决此类问题的方法，比如render props 和高阶组件(redux)</p><p>你会发现这类方法需要重新组织你的组件架构，使代码更加难以理解也会形成“嵌套地狱”</p><p>这说明一个更深层次的问题：<strong>React 需要为共享状态逻辑提供更好的原生途径(HOOKS)</strong></p><p><strong>可以使用HOOK 从组件中提取状态逻辑，使得这些逻辑可以单独测试并复用，Hook 使你在无需修改组件结构的情况下复用状态逻辑，这使得在组件间或社区内共享hook变得更加便捷</strong></p></blockquote><h1 id="2-复杂组件变得难以理解"><a href="#2-复杂组件变得难以理解" class="headerlink" title="2.复杂组件变得难以理解"></a>2.复杂组件变得难以理解</h1><h1 id="3-难以理解的class"><a href="#3-难以理解的class" class="headerlink" title="3.难以理解的class"></a>3.难以理解的class</h1><h1 id="什么是hooks"><a href="#什么是hooks" class="headerlink" title="什么是hooks"></a>什么是hooks</h1><blockquote><p>hook就是可以让你在一些函数组件里“钩入” React state及生命周期等特性的函数，<strong>HOOK不能在class组件中使用</strong></p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Num ()&#123;</span><br><span class="line">  // 声明一个 变量</span><br><span class="line">  // useState就是一个hook</span><br><span class="line">  // num是在渲染中需要的数据</span><br><span class="line">  // setNum 是提供修改数据的方法</span><br><span class="line">  // useState的返回值就是一个数组</span><br><span class="line">  const [num,setNum] = useState(0);</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;button onClick=&#123;()=&gt;setNum(num+1)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">    &#123;num&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div&gt;</span><br><span class="line">      &lt;Num&gt;&lt;/Num&gt;</span><br><span class="line">    &lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     
-    <summary type="html">什么是hook？有什么作用？</summary>
+    <summary type="html">什么是useState？有什么作用？</summary>
     
     
     
@@ -311,16 +353,16 @@
   </entry>
   
   <entry>
-    <title>useState</title>
-    <link href="https://isgov.github.io/posts/useState/"/>
-    <id>https://isgov.github.io/posts/useState/</id>
+    <title>hook</title>
+    <link href="https://isgov.github.io/posts/hook/"/>
+    <id>https://isgov.github.io/posts/hook/</id>
     <published>2024-03-12T07:19:57.000Z</published>
-    <updated>2024-03-14T08:30:13.350Z</updated>
+    <updated>2024-03-14T08:29:59.292Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Num ()&#123;</span><br><span class="line">  // 声明一个 变量</span><br><span class="line">  // useState就是一个hook</span><br><span class="line">  // num是在渲染中需要的数据</span><br><span class="line">  // setNum 是提供修改数据的方法</span><br><span class="line">  // useState的返回值就是一个数组</span><br><span class="line">  const [num,setNum] = useState(0);</span><br><span class="line">  return &lt;div&gt;</span><br><span class="line">    &lt;button onClick=&#123;()=&gt;setNum(num+1)&#125;&gt;+1&lt;/button&gt;</span><br><span class="line">    &#123;num&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div&gt;</span><br><span class="line">      &lt;Num&gt;&lt;/Num&gt;</span><br><span class="line">    &lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><blockquote><p>HOOK 解决了我们五年来编写和维护成千上万的组件时遇到的各种看起来不相关的问题</p></blockquote><h1 id="1-在组件之间复用状态逻辑很难"><a href="#1-在组件之间复用状态逻辑很难" class="headerlink" title="1.在组件之间复用状态逻辑很难"></a>1.在组件之间复用状态逻辑很难</h1><blockquote><p>React 没有提供将可复用性行为 “附加” 到组件的途径(例如 把组件连接到store)，如果你使用过Reaact一段时间，你会熟悉一些解决此类问题的方法，比如render props 和高阶组件(redux)</p><p>你会发现这类方法需要重新组织你的组件架构，使代码更加难以理解也会形成“嵌套地狱”</p><p>这说明一个更深层次的问题：<strong>React 需要为共享状态逻辑提供更好的原生途径(HOOKS)</strong></p><p><strong>可以使用HOOK 从组件中提取状态逻辑，使得这些逻辑可以单独测试并复用，Hook 使你在无需修改组件结构的情况下复用状态逻辑，这使得在组件间或社区内共享hook变得更加便捷</strong></p></blockquote><h1 id="2-复杂组件变得难以理解"><a href="#2-复杂组件变得难以理解" class="headerlink" title="2.复杂组件变得难以理解"></a>2.复杂组件变得难以理解</h1><h1 id="3-难以理解的class"><a href="#3-难以理解的class" class="headerlink" title="3.难以理解的class"></a>3.难以理解的class</h1><h1 id="什么是hooks"><a href="#什么是hooks" class="headerlink" title="什么是hooks"></a>什么是hooks</h1><blockquote><p>hook就是可以让你在一些函数组件里“钩入” React state及生命周期等特性的函数，<strong>HOOK不能在class组件中使用</strong></p></blockquote>]]></content>
     
     
-    <summary type="html">什么是useState？有什么作用？</summary>
+    <summary type="html">什么是hook？有什么作用？</summary>
     
     
     
@@ -384,48 +426,6 @@
     
     
     <summary type="html">forwardRef</summary>
-    
-    
-    
-    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
-    
-    
-    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Refs</title>
-    <link href="https://isgov.github.io/posts/Refs/"/>
-    <id>https://isgov.github.io/posts/Refs/</id>
-    <published>2024-03-12T07:15:57.000Z</published>
-    <updated>2024-03-14T08:28:11.021Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Refs-and-the-DOM"><a href="#Refs-and-the-DOM" class="headerlink" title="Refs and the DOM"></a>Refs and the DOM</h1><blockquote><p>Refs 提供了一种方式，<strong>允许我们访问DOM节点，或在render方法中创建的React元素(class组件)</strong></p></blockquote><blockquote><p>在典型的react数据流中，props是父组件与子组件交互的唯一方式，要修改一个子组件，你需要使用新的props来重新渲染它。但是，<strong>在某种情况下，你需要在典型数据流之外强制修改子组件，被修改的子组件可能是一个React组件的示例，也可能是</strong></p></blockquote><h1 id="何时使用？"><a href="#何时使用？" class="headerlink" title="何时使用？"></a>何时使用？</h1><blockquote><ul><li>管理焦点，文本选择或媒体播放</li><li>触发强制动画</li><li>集成第三方DOM库</li></ul><p>避免使用ref来做任何可以通过声明式实现来完成的事情</p><p>例如：避免在DIalog 组件中暴露open()和close()方法，最好传递isOpen属性</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    super();</span><br><span class="line">    this.dom_refs = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    console.log(this.dom_refs);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div ref=&#123;this.dom_refs&#125;&gt;</span><br><span class="line">      hello react</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p><strong>ref获取到的dom 和 document获取到的dom是一样的</strong></p></blockquote><h1 id="函数式组件使用ref"><a href="#函数式组件使用ref" class="headerlink" title="函数式组件使用ref"></a>函数式组件使用ref</h1><blockquote><p>一般来说 函数式组件没有实例不支持ref，一般使用forwardRef</p></blockquote><h1 id="ref的回调函数"><a href="#ref的回调函数" class="headerlink" title="ref的回调函数"></a>ref的回调函数</h1><blockquote><p>通过ref的回调函数获取 dom</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 子组件</span><br><span class="line">class Child extends React.Component&#123;</span><br><span class="line">  render()&#123;</span><br><span class="line">    return &lt;input ref=&#123;this.props.InputRef&#125; /&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  componentDidMount()&#123;</span><br><span class="line">    console.log(this.InputRef);</span><br><span class="line">  &#125;</span><br><span class="line"> render()&#123;</span><br><span class="line">  return(</span><br><span class="line">    &lt;Child InputRef=&#123;(el)=&gt;this.InputRef=el&#125;&gt;&lt;/Child&gt;</span><br><span class="line">  )</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">Refs and the DOM</summary>
-    
-    
-    
-    <category term="react" scheme="https://isgov.github.io/categories/react/"/>
-    
-    
-    <category term="react" scheme="https://isgov.github.io/tags/react/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>错误边界</title>
-    <link href="https://isgov.github.io/posts/%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8C/"/>
-    <id>https://isgov.github.io/posts/%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8C/</id>
-    <published>2024-03-12T07:14:57.000Z</published>
-    <updated>2024-03-14T08:27:52.014Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="错误边界-Error-Boundarles"><a href="#错误边界-Error-Boundarles" class="headerlink" title="错误边界(Error Boundarles)"></a>错误边界(Error Boundarles)</h1><blockquote><p>部分UI的JavaScript 错误不应该导致整个应用崩溃，为了解决这个问题，React16推出一个新的概念—错误边界</p></blockquote><blockquote><p>错误边界是一种React组件，这种组件可以捕获并打印发生在其子组件树任何位置的JavaScript错误，并且，它会渲染出备用UI ，而不是渲染那些崩溃的子组件，错误边界在渲染期间、生命周期方法和整个组件树的构造函数中捕获错误</p></blockquote><blockquote><p>注意：</p><p>边界错误无法捕获以下场景中产生的错误</p><ul><li>事件处理</li><li>异步代码(setTimeOut、requestAnimactionFrame回调函数)</li><li>服务端渲染</li><li>自身抛出的错误，并非子组件</li></ul></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// 错误组件</span><br><span class="line">class ErrorBoundary extends React.Component &#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      hasError: false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  static getDerivedStateFromError(error) &#123;</span><br><span class="line">    // 更新state 收拾下一次渲染能够显示降级后的UI</span><br><span class="line">    return &#123; hasError: true &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidCatch(error, errorInfo) &#123;</span><br><span class="line">    // 同样可以将错误日志上报给服务器</span><br><span class="line">    // logErrorToMyService(error, errorInfo)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    if(this.state.hasError)&#123;</span><br><span class="line">      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    return this.props.children;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">class App extends React.Component &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;ErrorBoundary&gt;</span><br><span class="line">      </span><br><span class="line">      &lt;/ErrorBoundary&gt;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">什么是错误边界</summary>
     
     
     
