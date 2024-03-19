@@ -50,5 +50,7 @@ img-url：图库封面的地址
 {% galleryGroup '二级路由' '二级路由' '/posts/二级路由/' /img/97.jpg %}
 {% galleryGroup 'redux' '什么是redux？他有什么作用？' '/posts/redux/' /img/99.jpg %}
 {% galleryGroup 'Redux常用方法' 'Redux常用方法有哪些？' '/posts/Redux常用方法/' /img/91.jpg %}
+{% galleryGroup 'redux执行顺序' 'redux执行顺序' '/posts/redux执行顺序/' /img/94.jpg %}
+{% galleryGroup '初步实现redux' '初步实现redux' '/posts/初步实现redux/' /img/99.jpg %}
 
 </div>
